@@ -45,7 +45,13 @@
 </h4>
 -->
 
+<!--
 ![screenshot](https://raw.githubusercontent.com/LuisAntonioFreitas/estudo_alura_oracle_one_desafio_3257_tabela_fipe_java_spring/main/assets/readme/screens.png)
+-->
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/LuisAntonioFreitas/estudo_alura_oracle_one_desafio_3257_tabela_fipe_java_spring/main/assets/readme/screens.png">
+</p>
 
 ## 📋 Recursos<a id="recursos"></a>
 
