@@ -12,8 +12,6 @@ import java.util.Scanner;
 
 public class Main {
     Scanner scanner = new Scanner(System.in);
-    ValidNumber validNumber = new ValidNumber();
-    ConsumeApi consumeApi = new ConsumeApi();
     ConvertsData convertsData = new ConvertsData();
 
     public void viewMenu() {
@@ -40,7 +38,7 @@ public class Main {
             System.out.println(OPTIONS_MENU);
 
             addressMarca = "";
-            optionMenu = validNumber.getValidInteger(scanner, OPTIONS_LIMIT);
+            optionMenu = ValidNumber.getValidInteger(scanner, OPTIONS_LIMIT);
 
             switch (optionMenu) {
                 case 1:
@@ -67,7 +65,7 @@ public class Main {
 
             if (!addressMarca.isEmpty()) {
 
-                json = consumeApi.getData(addressMarca);
+                json = ConsumeApi.getData(addressMarca);
                 if (!json.isEmpty()) {
                     List<Marcas> listaMarcas = convertsData.getList(json, Marcas.class);
                     listaMarcas.stream()
@@ -80,10 +78,10 @@ public class Main {
                 int codigoMarca = 0;
                 while (codigoMarca == 0) {
                     System.out.println("Escolha uma opção válida de marca para consultar:");
-                    codigoMarca = validNumber.getValidInteger(scanner, null);
+                    codigoMarca = ValidNumber.getValidInteger(scanner, null);
 
                     addressModelo = addressMarca.concat("/").concat(String.valueOf(codigoMarca)).concat("/modelos");
-                    json = consumeApi.getData(addressModelo);
+                    json = ConsumeApi.getData(addressModelo);
                     if (!json.isEmpty()) {
                         Modelos modeloLista = convertsData.getData(json, Modelos.class);
                         modeloLista.modelos().stream()
@@ -99,10 +97,10 @@ public class Main {
                 int codigoModelo = 0;
                 while (codigoModelo == 0) {
                     System.out.println("Escolha uma opção válida de modelo para consultar:");
-                    codigoModelo = validNumber.getValidInteger(scanner, null);
+                    codigoModelo = ValidNumber.getValidInteger(scanner, null);
 
                     addressAno = addressModelo.concat("/").concat(String.valueOf(codigoModelo)).concat("/anos");
-                    json = consumeApi.getData(addressAno);
+                    json = ConsumeApi.getData(addressAno);
                     if (!json.isEmpty()) {
                         String addressVeiculo = addressAno;
                         List<Veiculos> listaVeiculos = new ArrayList<>();
@@ -111,7 +109,7 @@ public class Main {
                                 .sorted(Comparator.comparing(Anos::codigoParseInteger).reversed())
                                 .forEach(e -> {
 
-                                    String jsonVeiculo = consumeApi.getData(addressVeiculo.concat("/").concat(e.codigo()));
+                                    String jsonVeiculo = ConsumeApi.getData(addressVeiculo.concat("/").concat(e.codigo()));
                                     if (!jsonVeiculo.isEmpty()) {
                                         Veiculos veiculo = convertsData.getData(jsonVeiculo, Veiculos.class);
                                         listaVeiculos.add(veiculo);

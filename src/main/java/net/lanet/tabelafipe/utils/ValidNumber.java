@@ -4,7 +4,7 @@ import java.util.Optional;
 import java.util.Scanner;
 
 public class ValidNumber {
-    public int getValidInteger(Scanner scanner, Integer limit) {
+    public static int getValidInteger(Scanner scanner, Integer limit) {
 
         int number = 0;
         boolean isValid = false;
@@ -31,7 +31,7 @@ public class ValidNumber {
         return number;
     }
 
-    public double getValidDouble(Scanner scanner, Integer limit) {
+    public static double getValidDouble(Scanner scanner, Integer limit) {
 
         double number = 0;
         boolean isValid = false;
